@@ -39,8 +39,3 @@ Analizar cómo los clientes de **ConnectaTel**, empresa de telecomunicaciones co
 ![Segmentación por Nivel de Uso](Segmentacion_Uso.png)
 
 ![Segmentación por Grupo de Edad](Segmentacion_Edad.png)
-
-## ▶️ Reproducibilidad
-1. Descargar la carpeta completa (el notebook y los archivos `plans.csv`, `users_latam.csv` y `usage.csv` deben estar juntos).
-2. Instalar dependencias: `pip install pandas numpy seaborn matplotlib jupyter`
-3. Abrir `ConnectaTel_Usage_Analysis.ipynb` y ejecutar **Run All**.
