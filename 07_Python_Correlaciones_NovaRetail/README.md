@@ -1,128 +1,50 @@
-# 🔍 Drivers de Ingreso del Cliente — NovaRetail+ 2024
+# 🔍 Análisis de Correlación y Drivers de Ingreso del Cliente (Python)
 
-**Análisis correlacional para identificar qué comportamientos del cliente están más fuertemente asociados con el ingreso anual generado en una plataforma de e-commerce latinoamericana.**
+## 🎯 Objetivo del Negocio
+Identificar qué factores del comportamiento del cliente están más fuertemente asociados con el **ingreso anual generado** en **NovaRetail+**, plataforma de comercio electrónico con millones de usuarios en Latinoamérica. El análisis, solicitado por el equipo de **Crecimiento y Retención** para el cierre de 2024, busca distinguir las relaciones reales de las engañosas y traducirlas en decisiones accionables, sin caer en interpretaciones causales incorrectas.
 
----
+## 🛠️ Herramientas y Metodología (Análisis Correlacional)
+* **Lenguaje y Librerías:** Python (Pandas, NumPy, Seaborn, Matplotlib, SciPy) en Jupyter Notebook.
+* **Calidad y Preparación de Datos:**
+  * Auditoría de una base de **15,000 clientes** y 12 variables: sin valores nulos, sin duplicados (`id_cliente` único) y categorías correctamente escritas.
+  * Corrección de tipo de dato en `edad` (`float64` → `int`), validando previamente la ausencia de decimales.
+  * Clasificación de variables por tipo (numéricas, binarias y categóricas) para seleccionar el coeficiente adecuado.
+* **Selección del Coeficiente según el Tipo de Variable:**
+  * **Pearson y Spearman:** numérica vs numérica, comparando ambos para detectar relaciones no lineales y el efecto de outliers.
+  * **Punto-biserial:** binaria vs numérica (`miembro_premium` y `abandono`).
+  * **V de Cramér:** categórica vs categórica (`tipo_dispositivo` y `region`).
+* **Visualización y Validación:** Heatmap de correlación, Scatterplots de pares clave, detección de colinealidad (umbral > 0.85) y evaluación de significancia vs. magnitud real.
 
-## 🎯 Pregunta de Negocio
+## 📈 Hallazgos Clave (Insights de Negocio)
 
-El equipo de **Crecimiento y Retención** de NovaRetail+ necesitaba responder antes del cierre de 2024:
+1. **La Frecuencia de Compra Domina el Ingreso:**
+   * `compras_mes` presenta una correlación de **0.97** con el ingreso anual (Pearson y Spearman), evidenciando **colinealidad**: los clientes con 0 compras generan exactamente 0 de ingreso, y al menos el **25%** de la base no generó ingresos.
+2. **Brecha de Conversión entre Visitas y Compras:**
+   * Las visitas se asocian solo de forma débil con las compras (**0.35**) y el ingreso (**0.34**). Existen clientes con **15 a 20 visitas mensuales y 0 compras**.
+3. **La Publicidad se Asocia con Tráfico, no con Ingreso:**
+   * El gasto publicitario se relaciona moderadamente con las visitas (**0.58**), pero apenas con el ingreso (**0.20**). Existe riesgo de **causalidad inversa**: la inversión podría estar dirigida a usuarios que ya eran activos.
+4. **Clientes Premium de Mayor Valor:**
+   * Los miembros premium (**13.93%** de la base) generan **44.58** de ingreso promedio frente a **35.30** de los no premium (**≈26% más**), sin comprar ni visitar con mayor frecuencia.
+5. **Abandono sin Explicación en los Datos:**
+   * El **15.07%** de los clientes abandonó la plataforma, pero el abandono no se asocia con ninguna variable analizada (r = -0.003 con el ingreso; V de Cramér < 0.02). Quienes abandonan generaban el mismo ingreso que quienes se quedan.
+6. **Variables sin Influencia en el Ingreso:**
+   * Satisfacción (**0.056**), ingreso personal (**0.017**), edad (**0.017**), dispositivo y región muestran una asociación prácticamente nula. Pearson y Spearman coincidieron en todas las variables (diferencia máxima de **0.016**), confirmando que los outliers no distorsionan los resultados.
 
-> *¿Qué factores del comportamiento del cliente están más fuertemente asociados con el ingreso anual generado?*
-
-⚠️ **Naturaleza del análisis:** exploratorio y correlacional. **Correlación ≠ causalidad.**
-
----
-
-## 🗂️ Dataset
-
-| Característica | Detalle |
-|---|---|
-| **Registros** | 15,000 clientes |
-| **Columnas** | 12 (numéricas, binarias y categóricas) |
-| **Variable objetivo** | `ingreso_anual` — ingreso generado por el cliente para la empresa |
-| **Calidad** | Sin valores nulos ni duplicados; `edad` corregida de `float64` a `int` |
-
----
-
-## 🛠️ Stack Tecnológico
-
-* **Lenguaje:** Python (Jupyter Notebook)
-* **Librerías:** Pandas, NumPy, Matplotlib, Seaborn, SciPy
-* **Técnicas estadísticas:** Correlación de Pearson y Spearman, Punto-biserial, V de Cramér, detección de colinealidad
-
----
-
-## ⚙️ Metodología
-
-| Paso | Acción | Técnica |
-|---|---|---|
-| 1 | Carga y auditoría de calidad | `info()`, `describe()`, validación de rangos y categorías |
-| 2 | Limpieza y documentación de supuestos | Corrección de tipos, validación de binarias y categóricas |
-| 3 | Visualización de relaciones | Heatmap de correlación + Scatterplots de pares clave |
-| 4 | Cálculo de correlaciones según tipo de variable | Pearson / Spearman · Punto-biserial · V de Cramér |
-| 5 | Interpretación responsable | Evidencia → Interpretación no causal → Implicación |
-| 6 | Limitaciones y próximos pasos | Qué no se puede concluir y cómo validarlo |
-
-La selección del coeficiente se basó en el **tipo de variable**: numérica vs numérica (Pearson/Spearman), binaria vs numérica (Punto-biserial) y categórica vs categórica (V de Cramér).
-
----
-
-## 📊 Visualizaciones Clave
-
-### Matriz de correlación
-![Heatmap de correlación](./images/heatmap_correlacion.png)
-
-### Pares de variables con relación relevante
-![Scatterplots de pares clave](./images/scatter_pares_clave.png)
-
----
-
-## 💡 Hallazgos Principales (Framework C-F-I)
-
-### 1. 🛒 La frecuencia de compra domina el ingreso
-* **Contexto:** se evaluó la relación de 6 variables numéricas con el ingreso anual.
-* **Hallazgo:** `compras_mes` presenta una correlación de **0.97** (Pearson y Spearman), lo que indica **colinealidad**: los clientes con 0 compras generan exactamente 0 de ingreso.
-* **Implicación:** la palanca principal de crecimiento es **aumentar la frecuencia de compra**; las iniciativas deben medirse por su impacto en compras, no solo en tráfico.
-
-### 2. 📱 Brecha de conversión: visitar no garantiza comprar
-* **Contexto:** análisis de la actividad en la plataforma frente a compras e ingreso.
-* **Hallazgo:** las visitas se asocian débilmente con compras (**0.35**) e ingreso (**0.34**); existen clientes con 15–20 visitas mensuales y 0 compras.
-* **Implicación:** más que atraer tráfico, conviene optimizar lo que convierte una visita en compra (recomendaciones, checkout, ofertas personalizadas).
-
-### 3. 📢 La publicidad se asocia más con visitas que con ingreso
-* **Contexto:** evaluación del gasto en publicidad dirigida.
-* **Hallazgo:** correlación moderada con visitas (**0.58**) pero débil con ingreso (**0.20**). Existe riesgo de **causalidad inversa**: la publicidad podría asignarse a usuarios que ya eran activos.
-* **Implicación:** validar mediante un **experimento A/B** antes de incrementar el presupuesto publicitario.
-
-### 4. 💎 Los clientes premium generan 26 % más sin comprar más seguido
-* **Contexto:** correlación punto-biserial entre membresía premium e ingreso.
-* **Hallazgo:** premium genera **44.58** vs **35.30** de no premium (r = 0.093, p < 0.001), sin relación con frecuencia de compra (0.003) ni visitas (-0.013).
-* **Implicación:** el segmento premium es estratégico; se recomienda analizar su ticket promedio y probar experimentalmente la promoción de la membresía.
-
-### 5. 🚪 El abandono no se explica con los datos disponibles
-* **Contexto:** análisis del abandono frente a todas las variables del dataset.
-* **Hallazgo:** sin relación con ingreso (r = -0.003), comportamiento, dispositivo ni región (V de Cramér < 0.02). Quienes abandonan generaban el mismo ingreso que quienes se quedan.
-* **Implicación:** cada abandono es una pérdida de valor promedio; el equipo de retención debe **recolectar nueva información** (encuestas de salida, soporte, precios).
-
-### 6. ⭐ Perfil, satisfacción y segmentación geográfica no influyen en el ingreso
-* **Hallazgo:** satisfacción (0.056), ingreso personal (0.017), edad (0.017), dispositivo y región muestran asociación prácticamente nula con el ingreso.
-* **Implicación:** segmentar por estas variables **no aporta valor**; las estrategias pueden aplicarse de forma general.
-
----
+## 💡 Recomendaciones Estratégicas
+* **Foco en la Frecuencia de Compra:** Medir el éxito de las iniciativas de crecimiento por su impacto en compras, no solo en tráfico, ya que el ingreso depende casi por completo de ellas.
+* **Optimización de la Conversión:** Mejorar recomendaciones, proceso de pago y ofertas personalizadas para convertir a los usuarios activos que visitan pero no compran.
+* **Experimento A/B de Publicidad:** Validar el efecto real de la inversión publicitaria sobre compras e ingreso antes de incrementar el presupuesto.
+* **Estrategia Premium:** Analizar el ticket promedio de los miembros premium y evaluar experimentalmente si promover la membresía incrementa el ingreso por cliente.
+* **Investigación del Abandono:** Recolectar nueva información (encuestas de salida, historial de soporte, precios y tiempos de entrega), ya que las causas del abandono no están en los datos actuales.
+* **Estrategias Generales sin Segmentación Geográfica:** Aplicar las iniciativas de forma general, ya que dispositivo, región, edad e ingreso personal no generan diferencias en el valor del cliente.
 
 ## ⚠️ Limitaciones
-
-* Análisis correlacional: no permite establecer relaciones causales.
-* Diferencia de escala temporal: métricas mensuales (`visitas_mes`, `compras_mes`) frente a una métrica anual (`ingreso_anual`).
+* Análisis correlacional: **no permite establecer relaciones causales**.
+* Diferencia de escala temporal: métricas mensuales (visitas y compras) frente a una métrica anual (ingreso).
 * Variables faltantes clave: ticket promedio, antigüedad del cliente, canal de adquisición y motivos de abandono.
-* Con 15,000 registros, relaciones mínimas resultan significativas; la interpretación se basó en la **magnitud**, no solo en el p-value.
 
----
+## 👁️ Visualización de Relaciones entre Variables
 
-## 🚀 Próximos Pasos
+![Matriz de Correlación](Heatmap_Correlacion.png)
 
-1. **Segmentación por comportamiento:** premium vs no premium (ticket promedio), usuarios activos sin compras y niveles de gasto publicitario.
-2. **Experimentos A/B:** medir el efecto real de la publicidad y de la promoción premium.
-3. **Enriquecimiento de datos:** información de abandono, series mensuales por cliente y modelos de regresión multivariada.
-
----
-
-## 📁 Estructura del Proyecto
-
-```
-06_Python_Correlaciones_NovaRetail/
-├── README.md
-├── novaretail_analisis_correlacion.ipynb
-├── data/
-│   ├── novaretail_comportamiento_clientes_2024.csv
-│   └── novaretail_comportamiento_clientes_2024_clean.csv
-└── images/
-    ├── heatmap_correlacion.png
-    └── scatter_pares_clave.png
-```
-
----
-*Análisis desarrollado como parte de mi formación en Análisis de Datos. Todos los resultados son reproducibles ejecutando el notebook de principio a fin.*
-
-[⬅️ Volver al portafolio principal](../)
+![Scatterplots de Pares Clave](Scatter_Pares_Clave.png)
