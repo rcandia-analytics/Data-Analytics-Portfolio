@@ -1,42 +1,50 @@
-# 📊 Portafolio de Análisis de Datos
+# 📊 Data Analytics Portfolio
 
-Bienvenido a mi repositorio técnico. Soy un **Analista de Datos** especializado en transformar bases de datos crudas en métricas accionables y conocimiento estratégico para la toma de decisiones empresariales. Mi enfoque es estrictamente analítico, priorizando la precisión, la calidad de la información y la estructuración implacable de los datos.
+Welcome to my technical repository. I'm a **Data Analyst** focused on turning raw data into actionable metrics and strategic insights that drive business decisions. My approach is strictly analytical, prioritizing accuracy, data quality, and rigorous data structuring.
 
-## 🛠️ Stack Tecnológico
-* **Lenguajes y Bases de Datos:** SQL (Extracción relacional, Window Functions, CTEs), Python.
-* **Librerías de Análisis:** Pandas, NumPy, Matplotlib, Seaborn.
-* **Procesamiento y Visualización:** Excel Avanzado (ETL, Modelado Relacional), Dashboards Ejecutivos.
-* **Framework Analítico:** Metodología C-F-I (Contexto - Hallazgo - Implicación), Análisis de Cohortes, Embudos de Conversión.
-
----
-
-## 📂 Índice de Proyectos
-
-A continuación se detallan las auditorías y modelados ejecutados, clasificados por tecnología y enfoque de negocio. Puedes hacer clic en cada título para auditar el código, la visualización y el resumen ejecutivo.
-
-### 1. [Pipeline de Limpieza y Estructuración de Datos (Excel)](./01_Excel_Limpieza_Datos)
-* **Enfoque:** Data Quality & ETL.
-* **Descripción:** Auditoría y estandarización de una base de datos transaccional de ventas tecnológicas. Resolución de valores nulos, estandarización de formatos y validación de integridad para dejarlos listos para la extracción de métricas.
-
-### 2. [Dashboard Ejecutivo y Análisis de Eficiencia Operativa (Walmart / Excel)](./02_Excel_Dashboard_Walmart)
-* **Enfoque:** Visualización de Datos & KPIs Financieros.
-* **Descripción:** Desarrollo de un Dashboard orientado a la Dirección Comercial evaluando el KPI de Ventas/m². Se demostró una brecha operativa donde el departamento líder operaba a $0.33/m², superando por 10x a las áreas rezagadas.
-
-### 3. [Extracción y Modelado de KPIs Financieros (SQL)](./03_SQL_KPIs_Financieros)
-* **Enfoque:** Rentabilidad & Retorno de Inversión (ROI).
-* **Descripción:** Análisis de ingresos, costos operativos y gasto publicitario histórico por país. Cálculo de Margen Operativo y ROI para fundamentar la reasignación estratégica del presupuesto internacional.
-
-### 4. [Análisis de Embudo de Conversión y Retención (MercadoLibre / SQL)](./04_SQL_Embudo_Conversion)
-* **Enfoque:** Comportamiento del Usuario (UX Data) & Análisis de Cohortes (LTV).
-* **Descripción:** Evaluación de un embudo de ventas identificando cuellos de botella críticos (caída del 65.9% en el carrito) y modelado de curvas de retención a 28 días segmentado por país y cohorte mensual.
-
-### 5. [Pipeline ETL y Análisis Exploratorio de Datos (Python)](./05_Python_ETL)
-* **Enfoque:** Automatización de Datos & EDA (Exploratory Data Analysis).
-* **Descripción:** Extracción y cruce relacional de datos de TomTom Traffic Index y OECD Cities mediante Pandas. Detección de valores atípicos (outliers) y análisis de correlación entre congestión vehicular y productividad (PIB per cápita) en Latinoamérica.
+## 🛠️ Tech Stack
+* **Languages & Databases:** SQL (Relational Querying, Window Functions, CTEs), Python.
+* **Analysis Libraries:** Pandas, NumPy, Matplotlib, Seaborn, SciPy.
+* **Data Processing & Visualization:** Advanced Excel (ETL, Relational Modeling), Executive Dashboards.
+* **Analytical Frameworks:** C-F-I Methodology (Context - Finding - Implication), Cohort Analysis, Conversion Funnels, Customer Segmentation, Correlation Analysis (Pearson, Spearman, Point-Biserial, Cramér's V).
 
 ---
-*Mis datos deben ser precisos y comprobados dos veces antes de entregar un producto final. Cada directorio contiene la base de datos auditable y el reporte orientado al negocio.*
 
-## 📬 Contacto
-* **LinkedIn:** [www.linkedin.com/in/rodrigo-candia-ramirez-376975371]
-* **Email:** [r.candiaoficial@gmail.com]
+## 📂 Project Index
+
+Below are the audits and models I've built, organized by technology and business focus. Click on any title to review the code, visualizations, and executive summary.
+
+### 1. [Data Cleaning & Structuring Pipeline (Excel)](./01_Excel_Limpieza_Datos)
+* **Focus:** Data Quality & ETL.
+* **Description:** Audit and standardization of a transactional database of technology sales. Handled missing values, standardized formats, and validated data integrity to prepare the dataset for metric extraction.
+
+### 2. [Executive Dashboard & Operational Efficiency Analysis (Walmart / Excel)](./02_Excel_Dashboard_Walmart)
+* **Focus:** Data Visualization & Financial KPIs.
+* **Description:** Built a dashboard for senior sales leadership to evaluate the Sales per m² KPI. Revealed an operational gap in which the top-performing department generated $0.33/m², outperforming lagging areas by 10x.
+
+### 3. [Financial KPI Extraction & Modeling (SQL)](./03_SQL_KPIs_Financieros)
+* **Focus:** Profitability & Return on Investment (ROI).
+* **Description:** Analysis of revenue, operating costs, and historical ad spend by country. Calculated Operating Margin and ROI to support the strategic reallocation of the international budget.
+
+### 4. [Conversion Funnel & Retention Analysis (MercadoLibre / SQL)](./04_SQL_Embudo_Conversion)
+* **Focus:** User Behavior (UX Data) & Cohort Analysis (LTV).
+* **Description:** Evaluated a sales funnel to pinpoint critical bottlenecks (a 65.9% drop-off at the cart stage) and modeled 28-day retention curves segmented by country and monthly cohort.
+
+### 5. [ETL Pipeline & Exploratory Data Analysis (Python)](./05_Python_ETL)
+* **Focus:** Data Automation & EDA (Exploratory Data Analysis).
+* **Description:** Extracted and joined data from the TomTom Traffic Index and OECD Cities using Pandas. Detected outliers and analyzed the correlation between traffic congestion and productivity (GDP per capita) across Latin America.
+
+### 6. [Usage Behavior Analysis & Customer Segmentation (ConnectaTel / Python)](./06_Python_Segmentacion_ConnectaTel)
+* **Focus:** Data Cleaning, EDA & Customer Segmentation.
+* **Description:** Integrated three data sources (plans, 4,000 customers, and 40,000 usage records) for a telecom company operating in Mexico and Colombia. Corrected sentinel values and impossible records, detected outliers using the IQR method, and segmented customers by age and usage level. Uncovered a 11.65% churn rate and a high-usage segment (7%) with strong upselling potential.
+
+### 7. [Correlation Analysis & Revenue Drivers (NovaRetail+ / Python)](./07_Python_Correlaciones_NovaRetail)
+* **Focus:** Correlation Analysis & Customer Behavior.
+* **Description:** Analyzed 15,000 e-commerce customers, selecting Pearson, Spearman, Point-Biserial, or Cramér's V according to each variable type. Identified collinearity between purchases and revenue (r = 0.97), a conversion gap between site visits and purchases, and found that premium members generate 26% more revenue without purchasing more often.
+
+---
+*Every dataset must be accurate and double-checked before a final product is delivered. Each directory contains the auditable dataset and a business-oriented report.*
+
+## 📬 Contact
+* **LinkedIn:** [rodrigo-candia-ramirez](https://www.linkedin.com/in/rodrigo-candia-ramirez-376975371)
+* **Email:** [r.candiaoficial@gmail.com](mailto:r.candiaoficial@gmail.com)
