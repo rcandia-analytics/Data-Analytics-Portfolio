@@ -90,39 +90,3 @@ The expanded vertical axis makes small differences visible. Error bars are **poi
 Normalized bars distinguish conversion efficiency from the unequal sizes of the New and Returning user populations.
 
 ![Conversion proportions for New and Returning users](assets/user_type_conversion.png)
-
-All **seven figures** and the complete statistical tables are included in the notebook.
-
-## 📁 Project Files
-
-| File | Contents |
-|---|---|
-| [S9_Landing_Experiment_English_Clean.ipynb](S9_Landing_Experiment_English_Clean.ipynb) | Complete analysis, executed outputs, seven figures, and business interpretation. |
-| [landing_experiment_clean.csv](landing_experiment_clean.csv) | Validated dataset: 40,000 rows and nine columns, with English field names and category labels. |
-| `assets/` | Figures exported from the executed notebook for this README. |
-| `README.md` | Project overview, methodology, findings, limitations, and execution instructions. |
-
-The clean dataset contains `user_id`, `date`, `landing`, `region`, `device`, `traffic_source`, `user_type`, `converted`, and `spend`. The source fields `dispositivo` and `gasto` were renamed to `device` and `spend`; Spanish region and user-type labels were translated without changing their meaning.
-
-**Data source:** the supplied learning-project CSV. The project does not independently establish the provenance of the underlying experiment or claim a production deployment.
-
-## 🚀 Run the Project
-
-1. Download or clone the project and keep the notebook and CSV in the same directory. Keep `assets/` beside this README so its images render correctly.
-2. Install the required packages:
-
-   ```bash
-   python -m pip install jupyterlab pandas numpy matplotlib seaborn scipy statsmodels ipython
-   ```
-
-3. Launch JupyterLab:
-
-   ```bash
-   jupyter lab
-   ```
-
-4. Open `S9_Landing_Experiment_English_Clean.ipynb` and select **Restart Kernel and Run All**. For a different input location, set `DATA_PATH` in the configuration cell.
-
-The notebook accepts the included English CSV and the original Spanish field names. After validation, it writes **`outputs/landing_experiment_clean.csv`** and verifies the exported data against the in-memory dataset. The 10,000-resample bootstrap calculations may take longer than the other cells. Dependencies are not version-pinned; this project does not claim identical rendering across all library versions.
-
-**Validation performed:** all **23 code cells** executed sequentially on the supplied data; all seven figures and statistical outputs were regenerated. CSV round-trip checks and preservation of all user identifiers, dates, conversions, and spending amounts passed.
