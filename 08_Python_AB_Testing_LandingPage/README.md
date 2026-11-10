@@ -77,16 +77,16 @@ Mann–Whitney provides a complementary rank/distribution comparison, not anothe
 
 Histograms, box plots, and normal Q–Q plots show the right-skewed spending distributions and support the choice of unequal-variance inference and robustness checks.
 
-![Buyer spending distributions and diagnostics by page](assets/buyer_spending_diagnostics.png)
+![Buyer spending distributions and diagnostics by page](buyer_spending_diagnostics.png)
 
 ### Traffic-source conversion rates
 
 The expanded vertical axis makes small differences visible. Error bars are **pointwise 95% normal intervals**, not simultaneous intervals or formal pairwise tests. The overall-rate reference includes the observations from each channel.
 
-![Traffic-source conversion rates with pointwise 95% confidence intervals](assets/traffic_conversion_rates.png)
+![Traffic-source conversion rates with pointwise 95% confidence intervals](traffic_conversion_rates.png)
 
 ### Conversion by user type
 
 Normalized bars distinguish conversion efficiency from the unequal sizes of the New and Returning user populations.
 
-![Conversion proportions for New and Returning users](assets/user_type_conversion.png)
+![Conversion proportions for New and Returning users](user_type_conversion.png)
